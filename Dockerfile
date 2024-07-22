@@ -1,5 +1,12 @@
+# Use the official Nginx image as the base image
 FROM nginx:alpine
-COPY . /html
-docker build -t html-server-image:v1
-docker images
+
+# Copy your HTML file to the default Nginx public directory
+COPY signup.html /usr/share/nginx/html/
+
+# Expose port 80 to the outside world
+EXPOSE 80
+
+# Start Nginx when the container starts
+CMD ["nginx", "-g", "daemon off;"]
 
